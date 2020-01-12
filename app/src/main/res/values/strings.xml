@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">KardhalakEsKIncsek</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_proba_pad">Kardhalak es Kincsek</string>
+    <string name="cimke_1">Cimke 1</string>
+    <string name="cimke_2">Cimke 2</string>
+    <string name="cimke_3">Cimke 3</string>
+    <string name="cimke_4">Cimke 4</string>
+    <string name="cimke_5">Cimke 5</string>
+    <string name="hint_1">Szöveg 1</string>
+    <string name="hint_2">Szöveg 2</string>
+    <string name="hint_3">Szöveg 3</string>
+    <string name="hint_4">Szöveg 4</string>
+    <string name="hint_5">Szöveg 5</string>
+
+
+</resources>
