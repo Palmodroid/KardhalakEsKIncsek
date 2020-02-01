@@ -1,23 +1,29 @@
 package digitalgarden.kardhalakeskincsek;
 
+import static digitalgarden.kardhalakeskincsek.Room.*;
+
 public class World
     {
-    // A sorrend nagyon fontos, mert a szobákra a sorszámukkal hivatkozunk (0, 1, 2, 3...)
-    private Room[] room = new Room[] {
-            new Room("Középső", "A terem közepén állsz", 1, 2, 3, 4),
-            new Room("Észak", "A hideg északon vagy", -1, 2, 0, 4),
-            new Room("Kelet", "A nap kel fel előtted", 1, -1, 3, 0),
-            new Room("Dél", "A forró délre tekintesz", 0, 2, -1, 4),
-            new Room("Nyugat", "Árnyékod nyugatra vetül", 1, 0, 3, -1) };
-
-    public int getNumberOfRooms()
+    public Room create()
         {
-        return room.length;
-        }
+        Room centralRoom = new Room("Középső", "A terem közepén állsz");
+        Room northRoom = new Room("Észak", "A hideg északon vagy");
+        Room eastRoom = new Room("Kelet", "A nap kel fel előtted");
+        Room southRoom = new Room("Dél", "A forró délre tekintesz");
+        Room westRoom = new Room("Nyugat", "Árnyékod nyugatra vetül");
 
-    public Room getRoom(int roomNumber)
-        {
-        return room[roomNumber];
+        centralRoom.setWay( northRoom, eastRoom, southRoom, westRoom );
+        northRoom.setWay( SOUTH, centralRoom );
+        northRoom.setWay( EAST, eastRoom );
+        eastRoom.setWay( WEST, centralRoom );
+        southRoom.setWay( NORTH, centralRoom );
+        westRoom.setWay( EAST, centralRoom );
+
+        Door centralEastDoor = new Door( "Zárva", "Zárt ajtó előtt állsz" );
+
+        centralEastDoor.setWay( centralRoom, EAST, eastRoom, WEST );
+
+        return centralRoom;
         }
 
     }

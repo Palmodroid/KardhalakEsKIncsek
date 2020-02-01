@@ -11,7 +11,9 @@ public class Command
             new Word( "e", 0),
             new Word( "k", 1),
             new Word( "d", 2),
-            new Word( "ny", 3) };
+            new Word( "ny", 3),
+            new Word( "nyit", 10),
+    };
 
     public int getMeaning( String command )
         {

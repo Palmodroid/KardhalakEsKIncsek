@@ -2,50 +2,50 @@ package digitalgarden.kardhalakeskincsek;
 
 public class Player
     {
-    private int position;
-
     private World world;
-
-    private boolean[] roomVisited;
-
+    private Room whereAmI;
 
     public Player( World world )
         {
-        position = 0;
-
         this.world = world;
-
-        roomVisited = new boolean[ world.getNumberOfRooms() ];
-
-        for ( int n = 0 ; n < roomVisited.length ; n++ )
-            {
-            roomVisited[n] = false;
-            }
+        whereAmI = world.create();
         }
+
 
     public String getDescriptionOfPosition()
         {
-        String d;
-
-        d = world.getRoom( position ).getDescription( roomVisited[position]);
-        roomVisited[position] = true;
-
-        return d;
+        return whereAmI.getDescription();
         }
 
-    public boolean move( int direction )
+    public String move( int direction )
         {
         if ( direction >= 0 && direction <= 3 )
             {
-            int p = world.getRoom(position).getDoor(direction);
+            String door = whereAmI.checkDoor( direction );
 
-            if (p < 0)
+            if ( door != null )
+                return door;
+
+            Room r = whereAmI.getWay(direction);
+
+            if ( r == null)
                 {
-                return false;
+                return null;
                 }
 
-            position = p;
+            whereAmI = r;
             }
-        return true;
+
+        return whereAmI.getDescription();
+        }
+
+    public String open()
+        {
+        if ( whereAmI.getDoor() != null )
+            {
+            whereAmI.getDoor().setOpen( true );
+            return "Az ajtó kitárul!";
+            }
+        return null;
         }
     }

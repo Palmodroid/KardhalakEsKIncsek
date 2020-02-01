@@ -105,15 +105,29 @@ public class MainActivity extends AppCompatActivity
             // String str2 = ed2.getText().toString();
 
 
-            int direction = command.getMeaning( ed2.getText().toString() );
+            int meaning = command.getMeaning( ed2.getText().toString() );
             ed2.setText ("");
-            if ( !player.move( direction ) )
-                {
-                ed1.setText( "Arra nem mehetsz!" );
-                return;
-                }
+            String answer = null;
 
-            ed1.setText( player.getDescriptionOfPosition() );
+            if ( meaning == 10 )
+                {
+                answer = player.open();
+                if ( answer == null)
+                    {
+                    ed1.setText("Mit nyissak ki?");
+                    return;
+                    }
+                }
+            else if ( meaning < 4 )
+                {
+                answer = player.move( meaning );
+                if ( answer == null)
+                    {
+                    ed1.setText("Arra nem mehetsz!");
+                    return;
+                    }
+                }
+            ed1.setText(answer);
             }
         catch (Exception e)
             {
